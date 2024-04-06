@@ -1,0 +1,46 @@
+{% extends 'shop/layouts/base.html'%}
+{%load static%}
+{% block title %}
+ Registration | Your Fit Fab
+{% endblock title %}
+<link rel="stylesheet" href="{% static 'uploads/css/login.css' %}">
+{% block content %}
+<div class="container ss" style="margin-top:80px;">
+    <div class="row justify-content-center align-items-center" >
+        <div class="col-md-6">
+            <h4 class="mb-3">USER LOGIN</h4>
+            <hr style="border-color: rgb(214, 40, 214);">
+            {% include 'shop/inc/message.html' %}
+        </div>
+        <div class="col-md-6 login-background">
+            <div class="login-overlay"></div>
+        </div>
+    </div>
+    <section class="py-4 my-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+
+                <center>
+                    <h1>welcome to login</h1>
+                    <form method="post" action="" class="login-form" style="box-shadow: 0 5px 30px 0 rgba(56, 57, 78, 0.37);">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <label for="username" class="form-label">User Name</label>
+                            <input type="text" name="username" id="username" class="form-control" placeholder="Enter your username">
+                        </div>
+                        <div class="mb-4">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">LOGIN</button>
+                    </form>
+                </center>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock content %}
+

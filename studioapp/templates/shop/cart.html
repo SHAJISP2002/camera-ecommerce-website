@@ -1,0 +1,35 @@
+{% extends 'shop/layouts/main.html' %}
+{% block title %}
+| Your Fit Fab | Cart
+{% endblock title %}
+{% block content %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Your Cart</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cart_items %}
+                        <tr>
+                            <td><img src="{{ item.product.product_image.url }}" alt="{{ item.product.name }}" style="max-width: 100px;"></td>
+                            <td>{{ item.product.name }}</td>
+                            <td>{{ item.product_qty }}</td>
+                            <td>Rs.{{ item.product.selling_price }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

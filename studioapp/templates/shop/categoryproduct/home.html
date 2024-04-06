@@ -1,0 +1,56 @@
+{% extends 'shop/layouts/main.html'%}
+{% block title %}
+|hiFi Cameras| online shoping
+{% endblock title %}
+{% block content%}
+<style>
+    .card {
+        position: relative;
+        overflow: hidden;
+        
+    }
+    
+    .card .card-image-top {
+        transition: transform 0.5s ease-in-out;
+        
+    }
+    
+    .card:hover .card-image-top {
+        transform: scale(1.1);
+       
+
+    }
+    
+    .card.cardd{
+        transition: transform 0.5s ease-in-out;
+    }
+    .card:hover .cardd{
+        transform: scale(1.1);
+    }
+
+</style>
+<section class="bg-light-py-4 my-5">
+    <div class="container" style="margin-top:80px;" >
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-3">{{cat_name}}</h4>
+                <hr style="border-color: dimgrey;">
+                {% include 'shop/inc/message.html' %}
+            </div>
+            {%for item in cat_pro %}
+            <div class="col-md-4 col-lg-3 cardd">
+                <div class="card my-3 lightning-border">
+                    <img src="{{item.product_image.url}}" class="card-image-top" alt="categories" height="180px" width="210px" style="padding-left: 30px;padding-top: 12px; ">
+                    <a href="{% url 'product_detail_view' product_id=item.id %}" class="btn btn-warning btn-sm">Shop Now</a>
+
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-primary">{{item.name}}</h5>
+                        <p class="card-text text-dark"><span class="float-start old_price"><s>Rs.{{item.original_price | stringformat:'d'}}</s></span>
+                            <span class="float-end new_price">Rs.{{item.selling_price | stringformat:'d'}}</span></p><br>
+            
+                    </div>
+                    </a>
+                </div>
+            </div>
+            {%endfor%}
+{%endblock content%}

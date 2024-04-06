@@ -1,0 +1,40 @@
+{% extends 'shop/layouts/main.html'%}
+{% block title %}
+ cameras | online shopping
+{% endblock title %}
+{% block content %}
+{% include 'shop/inc/slider.html' %}
+
+<div class="container" style="margin-top:70px;">
+    <div class="row">
+        <div class="col-12"><h1>Trending products</h1></div>
+        {%load static %}
+        {% for item in cat_pro %}
+    <div class="col-md-4 col-lg-3">
+        <div class="card my-3">
+            {% if item.product_image %}
+                <img src="{{ item.product_image.url }}" class="card-image-top" alt="categories" height="180px" width="210px" style="padding-left: 30px;padding-top: 12px;">
+            {% else %}
+               
+                <img src="{% static 'placeholder_image.jpg' %}" class="card-image-top" alt="No Image" height="180px" width="210px">
+            {% endif %}
+            {% if item.category.slug and item.slug %}
+                <a href="{% url 'product_detail_view' item.category.slug item.slug %}" class="btn btn-dark btn-sm">Details</a>
+            {% else %}
+                <a href="{% url 'product_detail_view' product_id=item.id %}" class="btn btn-dark btn-sm">Details</a>
+            {% endif %}
+            <div class="card-body text-center">
+                <h5 class="card-title text-primary">{{ item.name }}</h5>
+                <p class="card-text text-dark">
+                    <span class="float-start old_price"><s>Rs.{{ item.original_price | stringformat:'d' }}</s></span>
+                    <span class="float-end new_price">Rs.{{ item.selling_price | stringformat:'d' }}</span>
+                </p>
+                <br>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+    </div>
+ </div>
+{% endblock content %}
